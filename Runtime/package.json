@@ -1,0 +1,22 @@
+{
+    "name": "com.am1goo.nothing-glyph-developer-kit",
+    "version": "0.1.0",
+    "displayName": "Nothing Glyph Developer Kit",
+    "description": "Nothing Glyph Developer Kit for Unity",
+    "unity": "2020.3",
+    "license": "MIT",
+    "licensesUrl": "https://raw.githubusercontent.com/am1goo/nothing-glyph-developer-kit-for-unity/master/LICENSE",
+    "documentationUrl": "https://github.com/am1goo/nothing-glyph-developer-kit-for-unity/blob/main/README.md",
+    "keywords": [
+        "nothing",
+        "nothingos",
+        "glyph",
+	"android"
+    ],
+    "author": {
+        "name": "Pavel 'am1goo' Shestakov",
+        "email": "0xShestakov@gmail.com",
+        "url": "https://github.com/am1goo"
+    },
+    "type": "library"
+}
