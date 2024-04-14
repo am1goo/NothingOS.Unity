@@ -1,8 +1,8 @@
 {
-    "name": "com.am1goo.nothing-glyph-developer-kit",
+    "name": "com.am1goo.nothingos.gdk",
     "version": "1.0.0",
-    "displayName": "Nothing Glyph Developer Kit",
-    "description": "Nothing Glyph Developer Kit for Unity",
+    "displayName": "NothingOS Glyph Developer Kit",
+    "description": "NothingOS Glyph Developer Kit for Unity",
     "unity": "2020.3",
     "license": "MIT",
     "licensesUrl": "https://raw.githubusercontent.com/am1goo/NothingOS.Unity/master/LICENSE",
@@ -14,7 +14,7 @@
 		"animation",
 		"sdk",
 		"driver",
-		"london"
+		"london",
 		"android"
     ],
     "author": {
