@@ -4,7 +4,4 @@
     package="com.am1goo.nothinggdk"
     xmlns:tools="http://schemas.android.com/tools">     
 	<uses-permission android:name="com.nothing.ketchum.permission.ENABLE"/>
-	<application>
-		<meta-data android:name="NothingKey" android:value="{Your APIKey}" />
-	</application>
 </manifest>
