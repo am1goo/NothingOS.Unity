@@ -1,6 +1,4 @@
-<p align="left">
-  <img src="Readme/nothing_logo.jpg" alt="nothing_logo" width=300 height=auto/>
-</p>
+<img src="Readme/nothing_logo.jpg" alt="nothing_logo" width=200 height=auto/>
 
 ## NothingOS for Unity
 This SDK provides native APIs for all of the essential Glyph features on Nothing Phone.
