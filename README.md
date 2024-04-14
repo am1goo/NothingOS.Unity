@@ -15,7 +15,7 @@ This SDK provides native APIs for all of the essential Glyph features on Nothing
 #### Unity Plugin
 ##### via Unity Package Manager
 The latest version can be installed via [package manager](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using following git URL: \
-`https://github.com/am1goo/NothingOS.Unity.git#1.0.0`
+`https://github.com/am1goo/NothingOS.Unity.git#1.0.1`
 
 ## Requirements
 - Minimal SDK 19 (Android 4.4, KitKat)

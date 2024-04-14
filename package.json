@@ -1,6 +1,6 @@
 {
     "name": "com.am1goo.nothingos.gdk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "NothingOS Glyph Developer Kit",
     "description": "NothingOS Glyph Developer Kit for Unity",
     "unity": "2020.3",
