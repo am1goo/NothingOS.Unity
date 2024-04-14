@@ -1,21 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
-namespace NothingGDK
+namespace NothingOS.Glyphs
 {
     public class GlyphManager
     {
+        private string _modelId;
+
         private AndroidJavaObject _glyphManager;
         private AndroidJavaProxy _glyphCallbacks;
 
         private bool _managerWasInitialized;
         public bool managerWasInitialized => _managerWasInitialized;
 
+        private bool _deviceWasRegistered;
+        public bool deviceWasRegistered => _deviceWasRegistered;
+
         private bool _sessionWasOpened;
         public bool sessionWasOpened => _sessionWasOpened;
 
-        public GlyphManager(AndroidJavaObject glyphManager)
+        internal GlyphManager(string modelId, AndroidJavaObject glyphManager)
         {
+            this._modelId = modelId;
             this._glyphManager = glyphManager;
         }
 
@@ -32,6 +38,8 @@ namespace NothingGDK
 
         public void Shutdown()
         {
+            CloseSession();
+
             if (_managerWasInitialized)
             {
                 if (_glyphCallbacks != null)
@@ -54,10 +62,8 @@ namespace NothingGDK
         {
             if (!_sessionWasOpened)
             {
-                var model = Nothing.model;
-                var modelId = Nothing.GetModelId(model);
-                var registered = _glyphManager.Call<bool>("register", modelId);
-                Debug.Log($"Nothing: model {model}, modelId={modelId}, registered={registered}");
+                _deviceWasRegistered = _glyphManager.Call<bool>("register", _modelId);
+                Debug.Log($"Nothing: modelId={_modelId}, deviceWasRegistered={_deviceWasRegistered}");
 
                 try
                 {
@@ -89,15 +95,55 @@ namespace NothingGDK
                 }
                 finally
                 {
+                    _deviceWasRegistered = false;
                     _sessionWasOpened = false;
                     Debug.Log($"Nothing: close session, sessionWasOpened={_sessionWasOpened}");
                 }
             }
         }
 
+        public void SetFrameColors(int[] colors)
+        {
+            _glyphManager.Call("setFrameColors", colors);
+        }
+
+        public void Toggle(GlyphFrame frame)
+        {
+            _glyphManager.Call("toggle", frame.AsJavaObject());
+        }
+
+        public void Animate(GlyphFrame frame)
+        {
+            _glyphManager.Call("animate", frame.AsJavaObject());
+        }
+
         public void TurnOff()
         {
             _glyphManager.Call("turnOff");
+        }
+
+        public void DisplayProgressAndToggle(GlyphFrame frame, int progress, bool isReverse)
+        {
+            _glyphManager.Call("displayProgressAndToggle", frame.AsJavaObject(), progress, isReverse);
+        }
+
+        public void DisplayProgress(GlyphFrame frame, int progress)
+        {
+            _glyphManager.Call("displayProgress", frame.AsJavaObject(), progress);
+        }
+
+        public void DisplayProgress(GlyphFrame frame, int progress, bool isReverse)
+        {
+            _glyphManager.Call("displayProgress", frame.AsJavaObject(), progress, isReverse);
+        }
+
+        public GlyphBuilder Builder()
+        {
+            var javaObject = _glyphManager.Call<AndroidJavaObject>("getGlyphFrameBuilder");
+            if (javaObject != null)
+                return new GlyphBuilder(javaObject);
+            else
+                return new GlyphBuilder(_modelId);
         }
 
         private class GlyphManagerCallback : AndroidJavaProxy

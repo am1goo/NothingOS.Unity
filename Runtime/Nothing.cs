@@ -1,16 +1,22 @@
 #if UNITY_ANDROID
-using System;
 using UnityEngine;
 #endif
 
 using System.Collections.Generic;
+using NothingOS.Glyphs;
 
-namespace NothingGDK
+namespace NothingOS
 {
     public static class Nothing
     {
-        private static GlyphManager _glyphManager;
-        public static GlyphManager glyphManager => _glyphManager;
+        private static bool _sdkAvailable;
+        public static bool sdkAvailable => _sdkAvailable;
+
+        private static bool _isInitialized;
+        public static bool isInitialized => _isInitialized;
+
+        private static GlyphManager _glyphs;
+        public static GlyphManager glyphs => _glyphs;
 
         private static Model _model;
         public static Model model => _model;
@@ -22,6 +28,16 @@ namespace NothingGDK
 #if UNITY_ANDROID
             if (Application.isEditor)
                 return;
+
+            using (var osBuild = new AndroidJavaClass("android.os.Build$VERSION"))
+            {
+                //This SDK only works on Nothing devices running Android version 14 (UPSIDE_DOWN_CAKE) or newer.
+                var versionSdkInt = osBuild.GetStatic<int>("SDK_INT");
+                var expectedSdkInt = 34;
+                _sdkAvailable = versionSdkInt >= expectedSdkInt;
+                if (!_sdkAvailable)
+                    Debug.LogWarning($"Nothing: sdk not available on this os version {_sdkAvailable}, you must be use os version {expectedSdkInt} or newer");
+            }
 
             using (var common = new AndroidJavaClass("com.nothing.ketchum.Common"))
             {
@@ -62,10 +78,13 @@ namespace NothingGDK
             if (Application.isEditor)
                 return;
 
+            if (!_sdkAvailable)
+                return;
+
             if (_model == Model.Undefined)
                 return;
-            
-            if (_glyphManager != null)
+
+            if (_glyphs != null)
                 return;
             
             using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -79,8 +98,10 @@ namespace NothingGDK
                             var obj = glyphManager.CallStatic<AndroidJavaObject>("getInstance", context);
                             if (obj != null)
                             {
-                                _glyphManager = new GlyphManager(obj);
-                                _glyphManager.Initialize();
+                                var modelId = GetModelId(model);
+                                _glyphs = new GlyphManager(modelId, obj);
+                                _glyphs.Initialize();
+                                _isInitialized = true;
                             }
                         }
                     }
@@ -95,13 +116,16 @@ namespace NothingGDK
             if (Application.isEditor)
                 return;
 
+            if (!_sdkAvailable)
+                return;
+
             if (_model == Model.Undefined)
                 return;
 
-            if (_glyphManager != null)
+            if (_glyphs != null)
             {
-                _glyphManager.Shutdown();
-                _glyphManager = null;
+                _glyphs.Shutdown();
+                _glyphs = null;
             }
 #endif
         }

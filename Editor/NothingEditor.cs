@@ -3,7 +3,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace NothingGDK
+namespace NothingOS
 {
     public static class NothingEditor
     {
