@@ -6,7 +6,9 @@ namespace NothingOS.Glyphs
     public class GlyphBuilder : IDisposable
     {
         private AndroidJavaObject _javaObject;
+
         private bool _isDisposed;
+        public bool isDisposed => _isDisposed;
 
         internal GlyphBuilder(string targetDevice)
         {
