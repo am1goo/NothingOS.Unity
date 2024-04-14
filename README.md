@@ -12,6 +12,48 @@ This SDK provides native APIs for all of the essential Glyph features on Nothing
 - .NET wrapper for Unity
 - native [Glyph Developer Kit](https://github.com/Nothing-Developer-Programme/Glyph-Developer-Kit) `.jar` library
 
+## How to use
+ - First of all, you need to obtain `API Key` from Nothing Company by filling out the [request form](https://docs.google.com/forms/d/e/1FAIpQLScHZF5_1gZQABugJvJrWGTNuN2lhKlDWWP-B62ie29PtSB1uw/viewform)
+- In addition, you have to create `NothingSettings` scriptable object in any folder into `Assets` folder and place this `API key` in it.
+- The last step is to write your own code and make Nothing Phone light!
+
+##### Example:
+```csharp
+using NothingOS;
+using NothingOS.Glyphs;
+
+public class Example : MonoBehaviour
+{
+    void Start()
+    {
+        Nothing.Initialize();
+    }
+
+    void OnApplicationQuit()
+    {
+        Nothing.Shutdown();
+    }
+
+    void Update()
+    {
+        using (var builder = Nothing.glyphs.Builder())
+        {
+            builder
+            .SetPeriod(TimeSpan.FromSeconds(0.5f))
+            .SetInterval(TimeSpan.FromSeconds(0.25f))
+            .SetCycles(3)
+            .SetChannel(GlyphBuilder.Channel.ChannelA)
+            .SetChannelB();
+
+            using (var frame = builder.Build())
+            {
+                Nothing.glyphs.Animate(frame);
+            }
+        }
+    }
+}
+```
+
 #### Unity Plugin
 ##### via Unity Package Manager
 The latest version can be installed via [package manager](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using following git URL: \
