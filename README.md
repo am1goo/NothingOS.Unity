@@ -1,3 +1,5 @@
+[![openupm](https://img.shields.io/npm/v/com.am1goo.nothingos.gdk?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.am1goo.nothingos.gdk/)
+
 <img src="Readme/nothing_logo.jpg" alt="nothing_logo" width=200 height=auto/>
 
 ## NothingOS for Unity
@@ -58,6 +60,9 @@ public class Example : MonoBehaviour
 ##### via Unity Package Manager
 The latest version can be installed via [package manager](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using following git URL: \
 `https://github.com/am1goo/NothingOS.Unity.git#1.0.1`
+##### via OpenUPM
+The latest version can be installed via using following URL: \
+[https://openupm.com/packages/com.am1goo.nothingos.gdk](https://openupm.com/packages/com.am1goo.nothingos.gdk)
 
 ## Requirements
 - Minimal SDK 19 (Android 4.4, KitKat)
