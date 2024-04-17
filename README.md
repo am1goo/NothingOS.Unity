@@ -1,3 +1,7 @@
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/am1goo/NothingOS.Unity)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/am1goo/NothingOS.Unity)
+![GitHub License](https://img.shields.io/github/license/am1goo/NothingOS.Unity)
+
 [![openupm](https://img.shields.io/npm/v/com.am1goo.nothingos.gdk?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.am1goo.nothingos.gdk/)
 
 <img src="Readme/nothing_logo.jpg" alt="nothing_logo" width=200 height=auto/>
