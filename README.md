@@ -76,6 +76,7 @@ This plugin works only on SDK 34 or newer (Android 14, Upside Down Cake), on oth
 ## Tested in
 - Unity 2019.4.x
 - Unity 2020.3.x
-
+- Unity 2022.3.x
+- 
 ## Contribute
 Contribution in any form is very welcome. Bugs, feature requests or feedback can be reported in form of Issues.
